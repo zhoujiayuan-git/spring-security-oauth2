@@ -1,15 +1,37 @@
 package cn.zjy.study.security.dto;
 
+import cn.zjy.study.security.validate.MyConstraint;
 import com.fasterxml.jackson.annotation.JsonView;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.SafeHtml;
+
+import javax.validation.constraints.Past;
+import java.util.Date;
 
 public class User {
 
     public interface UserSimpleView{};
     public interface UserDetailView extends UserSimpleView{};
 
+    private String id;
+
+    @MyConstraint(message = "这是一个测试注解")
     private String userName;
 
+    @NotBlank(message = "密码不能为空")
     private String password;
+
+    @Past
+    private Date birthday;
+
+    @JsonView(UserSimpleView.class)
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     @JsonView(UserSimpleView.class)
     public String getUserName() {
@@ -27,5 +49,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @JsonView(UserSimpleView.class)
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

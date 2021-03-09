@@ -6,9 +6,12 @@ import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.awt.print.Pageable;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,7 @@ public class UserController {
      * @Author: zjy
      * @Date: 2021/3/9 13:45
      * @Description: @PathVariable url中声明的参数，可以获取到
+     * 通过正则表达式，校验请求参数的格式
      */
     @GetMapping(value = "{id:\\d+}")
     @JsonView(User.UserDetailView.class)
@@ -51,7 +55,35 @@ public class UserController {
         return user;
     }
 
+    @PostMapping
+    public User create(@Validated @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
+        System.out.println(user.getUserName());
+        System.out.println(user.getPassword());
+        System.out.println(user.getId());
+        System.out.println(user.getBirthday());
+        user.setId("1");
+        return user;
+    }
 
+    @PutMapping(value = "{id:\\d+}")
+    public User update(@Validated @RequestBody User user, BindingResult errors) {
+        if (errors.hasErrors()) {
+            errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
+        }
+        System.out.println(user.getUserName());
+        System.out.println(user.getPassword());
+        System.out.println(user.getId());
+        System.out.println(user.getBirthday());
+        return user;
+    }
+
+    @DeleteMapping(value = "{id:\\d+}")
+    public void delete(@PathVariable String id) {
+        System.out.println(id);
+    }
 
 
 }
