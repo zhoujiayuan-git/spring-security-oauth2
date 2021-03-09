@@ -2,6 +2,7 @@ package cn.zjy.study.security.controller;
 
 import cn.zjy.study.security.dto.User;
 import cn.zjy.study.security.dto.UserQueryCondition;
+import cn.zjy.study.security.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -49,10 +50,11 @@ public class UserController {
     @GetMapping(value = "{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable(name = "id") String userId) {
-        System.out.println("id：" + userId);
-        User user = new User();
-        user.setUserName("tom");
-        return user;
+//        System.out.println("id：" + userId);
+//        User user = new User();
+//        user.setUserName("tom");
+//        return user;
+        throw new UserNotExistException(userId);
     }
 
     @PostMapping
