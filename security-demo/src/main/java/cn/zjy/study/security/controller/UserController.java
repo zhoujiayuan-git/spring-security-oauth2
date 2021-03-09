@@ -50,11 +50,12 @@ public class UserController {
     @GetMapping(value = "{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable(name = "id") String userId) {
-//        System.out.println("id：" + userId);
-//        User user = new User();
-//        user.setUserName("tom");
-//        return user;
-        throw new UserNotExistException(userId);
+        //System.out.println("id：" + userId);
+        System.out.println("进入getInfo服务");
+        User user = new User();
+        user.setUserName("tom");
+        return user;
+        //throw new UserNotExistException(userId);
     }
 
     @PostMapping
