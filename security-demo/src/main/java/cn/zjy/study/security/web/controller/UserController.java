@@ -1,4 +1,4 @@
-package cn.zjy.study.security.controller;
+package cn.zjy.study.security.web.controller;
 
 import cn.zjy.study.security.dto.User;
 import cn.zjy.study.security.dto.UserQueryCondition;
@@ -6,13 +6,10 @@ import cn.zjy.study.security.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,12 +47,15 @@ public class UserController {
     @GetMapping(value = "{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable(name = "id") String userId) {
-        //System.out.println("id：" + userId);
+        System.out.println("id：" + userId);
         System.out.println("进入getInfo服务");
         User user = new User();
         user.setUserName("tom");
         return user;
-        //throw new UserNotExistException(userId);
+        // 如果抛出此自定义异常，会通过ControllerExceptionHandler处理掉异常，那么不会在拦截器的afterCompletion中获取到
+//        throw new UserNotExistException(userId);
+        // 如果未抛出异常，就会在在拦截器的afterCompletion中获取到
+//        int a = 1/0;
     }
 
     @PostMapping

@@ -18,6 +18,7 @@
             <artifactId>security-browser</artifactId>
             <version>1.1.0-SNAPSHOT</version>
         </dependency>
+        <!--测试 start -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -28,6 +29,13 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+        <!--测试 end -->
+        <!--切片 start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!--切片 end -->
     </dependencies>
 
 

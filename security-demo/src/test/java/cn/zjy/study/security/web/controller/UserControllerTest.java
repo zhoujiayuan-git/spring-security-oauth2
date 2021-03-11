@@ -1,6 +1,5 @@
-package cn.zjy.study.security.controller;
+package cn.zjy.study.security.web.controller;
 
-import com.jayway.jsonpath.JsonPath;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
