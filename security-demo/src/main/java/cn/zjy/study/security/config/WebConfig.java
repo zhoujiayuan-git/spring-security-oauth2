@@ -50,9 +50,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(timeInterceptor);
     }
 
-    @Override
+    /*@Override
     public void configureAsyncSupport(AsyncSupportConfigurer configurer) {
         // 注册拦截器
-        //configurer.registerCallableInterceptors();
-    }
+        configurer.registerCallableInterceptors();
+    }*/
 }

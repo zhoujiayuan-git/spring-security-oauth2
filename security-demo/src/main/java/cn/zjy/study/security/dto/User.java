@@ -2,6 +2,7 @@ package cn.zjy.study.security.dto;
 
 import cn.zjy.study.security.validate.MyConstraint;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.SafeHtml;
 
@@ -16,6 +17,7 @@ public class User {
     private String id;
 
     @MyConstraint(message = "这是一个测试注解")
+    @ApiModelProperty(value = "用户名称")// 为swagger提供注释
     private String userName;
 
     @NotBlank(message = "密码不能为空")

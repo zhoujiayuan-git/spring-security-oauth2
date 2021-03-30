@@ -4,6 +4,8 @@ import cn.zjy.study.security.dto.User;
 import cn.zjy.study.security.dto.UserQueryCondition;
 import cn.zjy.study.security.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.validation.BindingResult;
@@ -29,6 +31,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)// 返回相同对象的时候，在不同视图下显示不同的字段
+    @ApiOperation(value = "查询用户信息")// 为swagger提供注释
     public List<User> query(UserQueryCondition userQueryCondition) {
         System.out.println(ReflectionToStringBuilder.toString(userQueryCondition, ToStringStyle.MULTI_LINE_STYLE));
         List<User> userList = new ArrayList<>();
@@ -83,8 +86,9 @@ public class UserController {
         return user;
     }
 
+    // @ApiParam(value = "用户Id") 为swagger提供注释
     @DeleteMapping(value = "{id:\\d+}")
-    public void delete(@PathVariable String id) {
+    public void delete(@PathVariable @ApiParam(value = "用户Id") String id) {
         System.out.println(id);
     }
 

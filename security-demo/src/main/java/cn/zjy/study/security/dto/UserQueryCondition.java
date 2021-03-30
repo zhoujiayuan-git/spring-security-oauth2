@@ -1,7 +1,10 @@
 package cn.zjy.study.security.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class UserQueryCondition {
 
+    @ApiModelProperty(value = "用户名称")
     private String userName;
 
     private int age;
